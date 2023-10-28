@@ -20,12 +20,12 @@ tags:
     description: Data Article
     externalDocs:
       description: Deskripsi dan Kode Program
-      url: https://petapedia.github.io/gcf/get/
+      url: https://github.com/berkatauto/berkat-gcf/
   - name: auth
     description: Auth to Access to API
     externalDocs:
       description: Deskripsi dan Kode Program
-      url: https://petapedia.github.io/gcf/post/
+      url: https://github.com/berkatauto/berkat-gcf/signIn
   - name: user
     description: Get Token and Authorize
 paths:
