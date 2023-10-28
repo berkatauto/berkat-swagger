@@ -20,7 +20,7 @@ tags:
     description: Data Article
     externalDocs:
       description: Deskripsi dan Kode Program
-      url: https://github.com/berkatauto/berkat-gcf/post
+      url: https://github.com/berkatauto/berkat-gcf/ArticlePost
   - name: auth
     description: Auth to Access to API
     externalDocs:
