@@ -1,16 +1,14 @@
 openapi: 3.0.3
 info:
-  title: Dokumen API Cloud Function - OpenAPI 3.0
+  title: Berkat Auto - Dokumen API Cloud Function
   description: >-
-    Swagger ini adalah dokumentasi API untuk Berkat Auto.
-    API bersifat Open Source dan boleh di clone untuk digunakan kembali
-    pada web anda.
+    Swagger ini adalah dokumentasi dan uji coba API untuk aplikasi website Berkat Auto.
   termsOfService: 
   contact:
     email: adam.ghafara.job@gmail.com
   license:
     name: Berkat Auto Backend Package
-    url: https://pkg.go.dev/github.com/petapedia/peda
+    url: https://github.com/berkatauto/berkat-bepkg
   version: v1.0.0
 externalDocs:
   description: Repo GCF
@@ -19,7 +17,7 @@ servers:
   - url: https://asia-southeast2-gis-moni.cloudfunctions.net
 tags:
   - name: data
-    description: Data Geo Spasial
+    description: Data Article
     externalDocs:
       description: Deskripsi dan Kode Program
       url: https://petapedia.github.io/gcf/get/
@@ -98,10 +96,10 @@ components:
       properties:
         username:
           type: string
-          example: petped
+          example: admin
         password:
           type: string
-          example: secret
+          example: 12345
     AuthResponse:
       type: object
       properties:
@@ -110,7 +108,7 @@ components:
           example: false
         message:
           type: string
-          example: fehguy
+          example: login success
         token:
           type: string
           example: fehguy
