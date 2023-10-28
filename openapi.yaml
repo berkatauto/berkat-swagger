@@ -5,16 +5,16 @@ info:
     Swagger ini adalah dokumentasi API untuk Berkat Auto.
     API bersifat Open Source dan boleh di clone untuk digunakan kembali
     pada web anda.
-  termsOfService: https://github.com/jscroot/examples/tree/main/api/swagger
+  termsOfService: 
   contact:
     email: adam.ghafara.job@gmail.com
   license:
     name: Berkat Auto Backend Package
     url: https://pkg.go.dev/github.com/petapedia/peda
-  version: 1.0.11
+  version: v1.0.0
 externalDocs:
   description: Repo GCF
-  url: https://petapedia.github.io/gcf/
+  url: https://github.com/berkatauto/berkat-gcf
 servers:
   - url: https://asia-southeast2-gis-moni.cloudfunctions.net
 tags:
@@ -35,9 +35,9 @@ paths:
     get:
       tags:
         - data
-      summary: Get Data Geospasial
-      description: List Data Geospasial
-      operationId: getGeoJSON
+      summary: Get Articles
+      description: List all articles
+      operationId: articleSet
       responses:
         '200':
           description: successful operation
