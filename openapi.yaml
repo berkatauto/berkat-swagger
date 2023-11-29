@@ -26,6 +26,11 @@ tags:
     externalDocs:
       description: Deskripsi dan Kode Program
       url: https://github.com/berkatauto/berkat-gcf/signIn
+  - name: SignUp
+    description: SignUp to Berkat Auto
+    externalDocs:
+      description: Deskripsi dan Kode Program
+      url:
   - name: user
     description: Get Token and Authorize
 paths:
@@ -72,6 +77,27 @@ paths:
         - token:
             - write:apiKey
             - read:apiKey
+  /berkatauto-signUp:
+    post:
+      tags:
+        - signUp
+      summary: signUp to Berkat Auto
+      description: signUp Function
+      operationId: signUpFunc
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUp'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignUpResult'
+        '405':
+          description: Invalid input
 components:
   schemas:
     Peta:
@@ -91,6 +117,42 @@ components:
           properties:
             name:
               type: string
+    SignUp:
+      type: object
+      properties:
+        fullname:
+          type: string
+          example: Contoh Admin
+        username:
+          type: string
+          example: admin
+        password:
+          type: string
+          example: 12345
+        journal_bool:
+          type: boolean
+          example: true
+        role:
+          type: string
+          example: admin
+    SignUpResult:
+      type: object
+      properties:
+        fullname:
+          type: string
+          example: Contoh Admin
+        username:
+          type: string
+          example: admin
+        password:
+          type: string
+          example: 12345
+        journal_bool:
+          type: boolean
+          example: true
+        role:
+          type: string
+          example: admin
     Auth:
       type: object
       properties:
