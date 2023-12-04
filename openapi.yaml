@@ -16,31 +16,29 @@ externalDocs:
 servers:
   - url: https://asia-southeast2-gis-moni.cloudfunctions.net
 tags:
-  - name: data
+  - name: CRUD
     description: Data Article
     externalDocs:
       description: Deskripsi dan Kode Program
       url: https://github.com/berkatauto/berkat-gcf/ArticlePost
-  - name: auth
-    description: Auth to Access to API
+  - name: ACCOUNT
+    description: Account APIs with Using Tokenization
     externalDocs:
       description: Deskripsi dan Kode Program
       url: https://github.com/berkatauto/berkat-gcf/signIn
-  - name: SignUp
-    description: SignUp to Berkat Auto
-    externalDocs:
-      description: Deskripsi dan Kode Program
-      url:
-  - name: user
-    description: Get Token and Authorize
 paths:
   /berkatauto-cf:
-    get:
+    post:
       tags:
-        - data
-      summary: Get Articles
-      description: List all articles
-      operationId: articleSet
+        - CRUD
+      summary: Post Articles
+      description: Post New Articles
+      operationId: postArticle
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Articles'
       responses:
         '200':
           description: successful operation
@@ -49,13 +47,73 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Peta'
+                  $ref: '#/components/schemas/Articles'
         '400':
           description: Invalid status value
+  /berkatauto-getArticle:
+    get:
+      tags:
+        - CRUD
+      summary: Get Article
+      description: Get Article
+      operationId: getArticle
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Articles'
+        '400':
+          description: Invalid status value
+  /berkatauto-updateArticle:
+    post:
+      tags:
+        - CRUD
+      summary: Update Article
+      description: Update Article
+      operationId: updateArticle
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Articles'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Articles'
+        '405':
+          description: Invalid input
+  /berkatauto-deleteArticle:
+    delete:
+      tags:
+        - CRUD
+      summary: Delete Article
+      description: Delete Article
+      operationId: deleteArticle
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteArticle'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteArticle'
+        '405':
+          description: Invalid input
   /berkatauto-signIn:
     post:
       tags:
-        - auth
+        - ACCOUNT
       summary: Login get Token
       description: Login and Get User Token
       operationId: authService
@@ -80,7 +138,7 @@ paths:
   /berkatauto-signUp:
     post:
       tags:
-        - signUp
+        - ACCOUNT
       summary: signUp to Berkat Auto
       description: signUp Function
       operationId: signUpFunc
@@ -100,23 +158,42 @@ paths:
           description: Invalid input
 components:
   schemas:
-    Peta:
+    Articles:
       type: object
       properties:
-        type:
+        author:
           type: string
-        geometry:
+          example: Test Author
+        title:
+          type: string
+          example: Contoh Judul
+        category:
+          type: string
+          example: Belajar Otomotif
+        tags:
           type: object
           properties:
-            type: 
+            tag:
               type: string
-            coordinates: 
-              type: array
-        properties:
+              example: Mobil, Motor, Truck, Bus, Sparepart, Aksesoris, Velg, Ban, Oli, Jasa
+        content:
           type: object
           properties:
-            name:
+            paragraph:
               type: string
+              example: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis nulla a dolor dapibus euismod et non eros. Nullam cursus augue vel risus tincidunt consectetur. Cras eleifend risus eget leo fringilla, a porta tellus condimentum. Phasellus dapibus neque eu orci pharetra dignissim. Cras et sollicitudin lectus. Sed vestibulum est rhoncus vehicula faucibus. Phasellus efficitur, risus nec consequat consectetur, quam ligula convallis quam, eu commodo lacus neque non diam. Nam ac ante vestibulum, accumsan justo nec, laoreet orci. Morbi et ligula pharetra, consequat orci quis, euismod quam. Nunc lobortis dui in ultricies sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur placerat nibh ac purus consequat, ac hendrerit libero tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vehicula sapien non accumsan faucibus. Cras pulvinar, mi non semper molestie, nisi metus imperdiet arcu, non viverra elit ex vel odio. Proin ullamcorper ipsum vel accumsan rutrum. Nullam mattis dui sit amet mauris convallis, sit amet molestie dolor convallis. Aenean pulvinar neque sed sapien placerat maximus. Proin rutrum, tellus at vehicula suscipit, est nibh mollis urna, vel congue urna orci a urna. Quisque nec eleifend sem, id accumsan erat. Nunc sagittis leo eget tortor ultrices vehicula nec sit amet sapien. Aenean posuere a turpis vel posuere. Vivamus bibendum, eros et gravida vehicula, purus erat finibus tellus, eu faucibus orci purus a est. Phasellus tempor nibh a tortor fringilla, vitae bibendum risus volutpat. Fusce quis elit lacus. Praesent in sollicitudin neque, sit amet aliquam sapien.
+            image:
+              type: string
+              example: NII
+            video_link:
+              type: string
+              example: NVI
+    DeleteArticle:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Contoh Judul
     SignUp:
       type: object
       properties:
