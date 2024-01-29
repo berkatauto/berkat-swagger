@@ -3,7 +3,7 @@ info:
   title: Berkat Auto - Dokumen API Cloud Function
   description: >-
     Swagger ini adalah dokumentasi dan uji coba API untuk aplikasi website Berkat Auto.
-  termsOfService: 
+  termsOfService: https://github.com/berkatauto/
   contact:
     email: adam.ghafara.job@gmail.com
   license:
@@ -14,7 +14,7 @@ externalDocs:
   description: Repo GCF
   url: https://github.com/berkatauto/berkat-gcf
 servers:
-  - url: https://asia-southeast2-gis-moni.cloudfunctions.net
+  - url: https://asia-southeast2-spheric-entity-401507.cloudfunctions.net/
 tags:
   - name: CRUD
     description: Data Article
@@ -27,7 +27,7 @@ tags:
       description: Deskripsi dan Kode Program
       url: https://github.com/berkatauto/berkat-gcf/signIn
 paths:
-  /berkatauto-cf:
+  /articlepost:
     post:
       tags:
         - CRUD
@@ -50,7 +50,7 @@ paths:
                   $ref: '#/components/schemas/Articles'
         '400':
           description: Invalid status value
-  /berkatauto-getArticle:
+  /getarticle:
     get:
       tags:
         - CRUD
@@ -68,7 +68,7 @@ paths:
                   $ref: '#/components/schemas/Articles'
         '400':
           description: Invalid status value
-  /berkatauto-updateArticle:
+  /updatearticle:
     post:
       tags:
         - CRUD
@@ -89,7 +89,7 @@ paths:
                 $ref: '#/components/schemas/Articles'
         '405':
           description: Invalid input
-  /berkatauto-deleteArticle:
+  /articledelete:
     delete:
       tags:
         - CRUD
@@ -107,10 +107,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteArticle'
+                $ref: '#/components/schemas/DeleteMessage'
         '405':
           description: Invalid input
-  /berkatauto-signIn:
+  /signin:
     post:
       tags:
         - ACCOUNT
@@ -135,7 +135,7 @@ paths:
         - token:
             - write:apiKey
             - read:apiKey
-  /berkatauto-signUp:
+  /signup:
     post:
       tags:
         - ACCOUNT
@@ -188,12 +188,18 @@ components:
             video_link:
               type: string
               example: NVI
+            date:
+              type: string
+              example: date here
     DeleteArticle:
       type: object
       properties:
         title:
           type: string
           example: Contoh Judul
+    DeleteMessage:
+      type: string
+      example: Deleting successful!
     SignUp:
       type: object
       properties:
@@ -243,14 +249,14 @@ components:
       type: object
       properties:
         status:
-          type: bool
+          type: true
           example: false
+        token:
+          type: string
+          example: v4.public.1203857r1y327905ry128
         message:
           type: string
           example: login success
-        token:
-          type: string
-          example: fehguy
   requestBodies:
     AuthReq:
       description: Request Authentication
